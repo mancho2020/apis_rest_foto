@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API de Fotos</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-image: url("https://p4.wallpaperbetter.com/wallpaper/559/164/1018/olympus-photo-camera-camera-wallpaper-preview.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    /* Ajustes para la barra de navegación */
+    .navbar {
+      margin-bottom: 0;
+      border-bottom: 2px solid #343a40;
+      border-radius: 0;
+    }
+
+    /* Ajustes para la barra lateral */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 250px;
+      background-color: #343a40;
+      padding: 20px;
+      color: white;
+    }
+
+    /* Ajustes para el contenido principal */
+    main.container {
+      margin-top: 70px;
+      /* Espacio para la barra de navegación */
+      margin-left: 260px;
+      /* Ancho de la barra lateral + 10px de separación */
+    }
+
+    /* Ajustes para la galería de medios */
+    #gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    /* Ajustes para las tarjetas de medios */
+    .card {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* Ajustes para los detalles de medios */
+    #mediaTableBody tr td {
+      vertical-align: middle;
+    }
+
+    /* Ajustes para las tablas de detalles */
+    .table {
+      margin-top: 20px;
+    }
+
+    /* Ajustes para las imágenes en detalles de medios */
+    .table img {
+      max-width: 80px;
+      height: auto;
+    }
+
+    /* Ajustes para los botones de eliminar */
+    .btn-delete {
+      margin-left: 10px;
+    }
+
+    /* Ajustes para el pie de página */
+    .footer {
+      background-color: #343a40;
+      padding: 3px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .footer-icons {
+      font-size: 24px;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="Mi Galería" width="30" height="30" class="d-inline-block align-top">
+      Mi Galería
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            <i class="fas fa-home"></i>
+            Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-image"></i>
+            Galería
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-envelope"></i>
+            Contacto
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <aside id="sidebar">
+    <div class="list-group">
+      <a href="#about" class="list-group-item list-group-item-action">
+        <i class="fas fa-info-circle"></i> Sobre Nosotros
+      </a>
+      <a href="#info" class="list-group-item list-group-item-action">
+        <i class="fas fa-question-circle"></i> Más Info
+      </a>
+      <a href="#site" class="list-group-item list-group-item-action">
+        <i class="fas fa-globe"></i> Sitio
+      </a>
+      <a href="#recommended" class="list-group-item list-group-item-action">
+        <i class="fas fa-star"></i> Recomendado
+      </a>
+    </div>
+  </aside>
+
+
+  <main class="container mt-4">
+    <section>
+      <div id="photoViewer" class="d-none">
+        <button id="prevPhoto" class="btn btn-secondary mr-2">&lt; Anterior</button>
+        <img id="currentPhoto" src="" alt="">
+        <button id="nextPhoto" class="btn btn-secondary ml-2">Siguiente &gt;</button>
+      </div>
+    </section>
+    <div>
+      <div class="form-group">
+        <button class="btn btn-primary" id="btnAddPhoto">Agregar Foto</button>
+      </div>
+    </div>
+    <h1 class="mb-4">Galería de Fotos</h1>
+    <div class="form-group">
+      <label for="mediaType">Selecciona el tipo de media:</label>
+      <select class="form-control" id="mediaType">
+        <option value="photo">Foto</option>
+        <option value="video">Video</option>
+      </select>
+    </div>
+    <div id="gallery" class="row"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="text-muted">&copy; 2023 Mi Galería. Todos los derechos reservados.</span>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <a href="#" class="footer-icons"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="footer-icons"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="footer-icons"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

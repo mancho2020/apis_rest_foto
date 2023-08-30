@@ -1,0 +1,32 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .container {
+    max-width: 960px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  #photoGallery .img-fluid {
+    width: 100%;
+    height: auto;
+  }
+  
+  #photoGallery .btn {
+    width: 100%;
+  }    body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+
+
+
+ 

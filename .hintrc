@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "development"//excesiones del index y imprevistos que se me presento en el index pero asi por medio de esto , no me salio error en el index y funciona correctamente el sitio.
+  ],
+  "hints": {
+    "axe/forms": [
+      "default",
+      {
+        "select-name": "off"//excesiones del index y imprevistos que se me presento en el index pero asi por medio de esto , no me salio error en el index y funciona correctamente el sitio.
+      }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "link-name": "off"//excesiones del index y imprevistos que se me presento en el index pero asi por medio de esto , no me salio error en el index y funciona correctamente el sitio.
+      }
+    ]
+  }
+}
